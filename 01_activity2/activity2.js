@@ -27,6 +27,7 @@ function output(arr, num) {
 }
 
 console.log(output(arr, 7))
+console.log(output(arr, 22))
 
 
 
