@@ -19,7 +19,7 @@ function binarySearch(array, num) {
 
 function output(arr, num) {
   let index = binarySearch(arr, num)
-    if(!index == -1) {
+    if(index !== -1) {
       return `Index of "${num}": "${index}"`
     } else {
       return `Number "${num}" is not in the list`
