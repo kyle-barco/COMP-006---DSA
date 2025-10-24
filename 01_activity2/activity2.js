@@ -1,4 +1,5 @@
-let arr = [1,2,3,4,5,6,7,8,9,0]
+console.time("binarySearchTime")
+let arr = [1,2,3,4,5,6,7,8,9,10]
 
 function binarySearch(array, num) {
   let left = 0, right = array.length - 1
@@ -25,9 +26,10 @@ function output(arr, num) {
       return `Number "${num}" is not in the list`
     }
 }
+console.timeEnd("binarySearchTime")
 
-console.log(output(arr, 7))
+// console.log(output(arr, 5))
+// console.log(output(arr, 7))
 console.log(output(arr, 22))
-
 
 
