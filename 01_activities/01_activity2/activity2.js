@@ -28,8 +28,8 @@ function output(arr, num) {
 }
 console.timeEnd("binarySearchTime")
 
-// console.log(output(arr, 5))
+console.log(output(arr, 4))
 // console.log(output(arr, 7))
-console.log(output(arr, 22))
+// console.log(output(arr, 22))
 
 
