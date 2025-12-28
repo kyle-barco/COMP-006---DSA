@@ -46,8 +46,6 @@ class Queue {
     this.array[this.rear] = value
     console.log(`Enqueued Value: ${value}`);
     }
-
-
   }
 
   // dequeue

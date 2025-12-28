@@ -5,7 +5,6 @@
   // else, search to left
 // else return -1
 
-
 function binarySearch(arr, num, low, high) {
   
   if (high >= low) {
@@ -26,7 +25,18 @@ function binarySearch(arr, num, low, high) {
 } 
 
 const arrayNum = [1, 2, 3, 4, 5, 6, 7]
-let num = 2
-let res = binarySearch(arrayNum, num, )
+let num = 6
+let lowNum = 0
+let n = arrayNum.length - 1
+let highNum = n
+let res = binarySearch(arrayNum, num, lowNum, highNum)
 
-if ()
+function display(result){
+  if(result !== -1) {
+    console.log(`Element is present at index ${result}`)
+  } else {
+    console.log(`Element not found`)
+  }  
+}
+
+display(res)
