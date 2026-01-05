@@ -1,4 +1,4 @@
-let arrNum = [1,2,3,4,5,6,7,8,9]
+let arrNum = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 function binarySearch(arr, num) {
     let left = 0
@@ -7,9 +7,9 @@ function binarySearch(arr, num) {
     while (left <= right) {
         let mid = Math.floor((left + right) / 2)
 
-        if(arr[mid] == num) {
+        if (arr[mid] == num) {
             return mid
-        } else if(arr[mid] < num) {
+        } else if (arr[mid] < num) {
             left = mid + 1
         } else {
             right = mid - 1
@@ -18,11 +18,11 @@ function binarySearch(arr, num) {
     return -1
 }
 
-const CHOSEN_NUM = 4
+let CHOSEN_NUM = 9
 let idx = binarySearch(arrNum, CHOSEN_NUM)
 
 if(idx !== -1) {
-    console.log(`Number found at index: ${idx}`)
+    console.log(`Number found at index ${idx}`)
 } else {
     console.log(`Number not found`)
 }

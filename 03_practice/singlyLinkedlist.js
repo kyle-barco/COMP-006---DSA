@@ -10,10 +10,10 @@ const SinglyLinkedList = (() => {
     let tail = null
     let size = 0
 
-    const append = (value) => {
+    const append =(value) => {
         let newNode = Node(value)
-
-        if (!head) {
+        
+        if(!head) {
             head = newNode
             tail = newNode
         } else {
@@ -24,17 +24,18 @@ const SinglyLinkedList = (() => {
     }
 
     const delLastNode = () => {
-        if(!head) return null        
+        if (!head) return null
 
         let deletedVal = tail.value
         if(head == tail) {
             head = null
-            tail == null
+            tail = null
             size--
             return deletedVal
-        } 
+        }
+
         let current = head
-        while (current.nextNode !== tail) {
+        while(current.nextNode !== tail) {
             current = current.nextNode
         }
         current.nextNode = null
@@ -49,7 +50,7 @@ const SinglyLinkedList = (() => {
         let str = ""
         let current = head
 
-        while (current) {
+        while(current) {
             str += `(${current.value}) -> `
             if(!current.nextNode) {
                 str += `null`
@@ -59,18 +60,20 @@ const SinglyLinkedList = (() => {
         return str
     }
 
+    
     return {
         append,
-        delLastNode,
-        toPrint
+        toPrint,
+        delLastNode
     }
-
 })()
+
 
 SinglyLinkedList.append(34)
 SinglyLinkedList.append(9)
 SinglyLinkedList.append(24)
 SinglyLinkedList.append(90)
+SinglyLinkedList.append(56)
 console.log(`OUTPUT: ${SinglyLinkedList.toPrint()}`)
 SinglyLinkedList.delLastNode()
 console.log(`UPDATED OUTPUT: ${SinglyLinkedList.toPrint()}`)
