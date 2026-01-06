@@ -10,18 +10,71 @@ const SinglyLinkedList = (() => {
     let tail = null
     let size = 0
 
+    const prepend = (value) => {
+        const newNode = Node(value)
+
+        if(head == null) {
+            tail = newNode
+            head = newNode
+            return 
+        }
+
+        newNode.nextNode = head
+        head.prevNode = newNode
+        size++
+    }
+
     const append = (value) => {
         let newNode = Node(value)
 
-        if (!head) {
+        if (tail == null) {
             head = newNode
             tail = newNode
-        } else {
-            tail.nextNode = newNode
-            tail = newNode
         }
+
+        newNode.prevNode = tail
+        tail.nextNode = newNode
+        tail = newNode
         size++
     }
+
+    const insertAtMid = (x) => {
+        if(head == null) {
+            return Node(x)
+        } else {
+            let newNode = Node(x)
+            let current = head
+            let len = 0
+
+            while(current !== null) {
+                len++
+                current = current.nextNode
+            }
+
+            let mid = (len % 2 === 0) ? len / 2 : (len + 1) / 2
+            current = head
+
+            while (mid-- > 1) {
+                current = current.nextNode
+            }
+
+            newNode.nextNode = current.nextNode
+            current.nextNode = newNode
+            return head
+        }
+    }
+
+    const traverse = () => {
+        let res = []
+        let current = head
+        while(current.nextNode) {
+            res.push(current.value)
+            current = current.nextNode
+        }
+        res.push(current.value)
+        return res.join(', ')
+    }
+
 
     const delLastNode = () => {
         if (!head) return null
@@ -43,26 +96,12 @@ const SinglyLinkedList = (() => {
         return deletedVal
     }
 
-    const toPrint = () => {
-        if (!head) return "null"
-
-        let str = ""
-        let current = head
-
-        while (current) {
-            str += `(${current.value}) -> `
-            if (!current.nextNode) {
-                str += `null`
-            }
-            current = current.nextNode
-        }
-        return str
-    }
-
     return {
+        prepend,
         append,
+        insertAtMid,
         delLastNode,
-        toPrint
+        traverse
     }
 })()
 
@@ -71,6 +110,6 @@ SinglyLinkedList.append(9)
 SinglyLinkedList.append(24)
 SinglyLinkedList.append(90)
 SinglyLinkedList.append(22)
-console.log(`OUTPUT: ${SinglyLinkedList.toPrint()}`)
-SinglyLinkedList.delLastNode()
-console.log(`Updated OUTPUT: ${SinglyLinkedList.toPrint()}`)
+console.log(`OUTPUT: ${SinglyLinkedList.traverse()}`)
+SinglyLinkedList.insertAtMid(45)
+console.log(`Updated OUTPUT: ${SinglyLinkedList.traverse()}`)

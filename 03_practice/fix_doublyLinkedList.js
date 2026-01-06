@@ -14,7 +14,7 @@ const DoublyLinkedList = (() => {
     const prepend = (val) => {
         const newNode = Node(val)
 
-        if(head == null) {
+        if (head == null) {
             tail = newNode
             head = newNode
             return
@@ -29,10 +29,10 @@ const DoublyLinkedList = (() => {
     const append = (val) => {
         let newNode = Node(val)
 
-        if(tail == null) {
+        if (tail == null) {
             head = newNode
             tail = newNode
-            return 
+            return
         }
 
         newNode.prevNode = tail
@@ -41,10 +41,37 @@ const DoublyLinkedList = (() => {
         size++
     }
 
+    const insertAtMid = (x) => {
+        if (head == null) {
+            return Node(x)
+        } else {
+            let newNode = Node(x)
+            let current = head
+            let len = 0
+
+            while (current !== null) {
+                len++
+                current = current.nextNode
+            }
+
+            let mid = (len % 2 === 0) ? len / 2 : (len + 1) / 2
+            current = head
+
+            while (mid-- > 1) {
+                current = current.nextNode
+            }
+
+            newNode.nextNode = current.nextNode
+            current.nextNode = newNode
+            return head
+        }
+
+    }
+
     const traverse = () => {
         let res = []
         let current = head
-        while(current.nextNode) {
+        while (current.nextNode) {
             res.push(current.value)
             current = current.nextNode
         }
@@ -61,6 +88,7 @@ const DoublyLinkedList = (() => {
     return {
         append,
         prepend,
+        insertAtMid,
         traverse,
         removeTail
     }
@@ -70,7 +98,9 @@ DoublyLinkedList.append(1)
 DoublyLinkedList.append(2)
 DoublyLinkedList.append(3)
 console.log(`OUPUT: ${DoublyLinkedList.traverse()}`)
-DoublyLinkedList.prepend(78)
+DoublyLinkedList.prepend(9)
 console.log(`UPDATED OUPUT: ${DoublyLinkedList.traverse()}`)
-DoublyLinkedList.removeTail()
+// DoublyLinkedList.removeTail()
+// console.log(`UPDATED OUPUT: ${DoublyLinkedList.traverse()}`)
+DoublyLinkedList.insertAtMid(76)
 console.log(`UPDATED OUPUT: ${DoublyLinkedList.traverse()}`)
