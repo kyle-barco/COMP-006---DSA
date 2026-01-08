@@ -5,7 +5,7 @@ const Node = (data = null, next = null) => {
     }
 }
 
-const SinglyLinkedList = (() => {
+const SinglyLinkedList  = (() => {
     let head = null
     let tail = null
     let size = 0
@@ -20,21 +20,20 @@ const SinglyLinkedList = (() => {
         }
 
         newNode.nextNode = head
-        head.prevNode = newNode
+        head = newNode
         size++
     }
 
-    const append = (value) => {
+    const append =(value) => {
         let newNode = Node(value)
-
-        if (tail == null) {
+        
+        if(!head) {
             head = newNode
             tail = newNode
+        } else {
+            tail.nextNode = newNode
+            tail = newNode
         }
-
-        newNode.prevNode = tail
-        tail.nextNode = newNode
-        tail = newNode
         size++
     }
 
@@ -52,6 +51,7 @@ const SinglyLinkedList = (() => {
             }
 
             let mid = (len % 2 === 0) ? len / 2 : (len + 1) / 2
+
             current = head
 
             while (mid-- > 1) {
@@ -76,32 +76,32 @@ const SinglyLinkedList = (() => {
     }
 
 
-    const delLastNode = () => {
-        if (!head) return null
+    // const delLastNode = () => {
+    //     if (!head) return null
 
-        const deletedVal = tail.value
-        if (head === tail) {
-            head = null
-            tail = null
-            size--
-            return deletedVal
-        }
-        let current = head
-        while (current.nextNode !== tail) {
-            current = current.nextNode
-        }
-        current.nextNode = null
-        tail = current
-        size--
-        return deletedVal
-    }
+    //     const deletedVal = tail.value
+    //     if (head === tail) {
+    //         head = null
+    //         tail = null
+    //         size--
+    //         return deletedVal
+    //     }
+    //     let current = head
+    //     while (current.nextNode !== tail) {
+    //         current = current.nextNode
+    //     }
+    //     current.nextNode = null
+    //     tail = current
+    //     size--
+    //     return deletedVal
+    // }
 
     return {
         prepend,
         append,
         insertAtMid,
-        delLastNode,
         traverse
+        // delLastNode,
     }
 })()
 
@@ -112,4 +112,6 @@ SinglyLinkedList.append(90)
 SinglyLinkedList.append(22)
 console.log(`OUTPUT: ${SinglyLinkedList.traverse()}`)
 SinglyLinkedList.insertAtMid(45)
+console.log(`Updated OUTPUT: ${SinglyLinkedList.traverse()}`)
+SinglyLinkedList.prepend(33)
 console.log(`Updated OUTPUT: ${SinglyLinkedList.traverse()}`)
