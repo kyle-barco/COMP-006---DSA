@@ -12,8 +12,8 @@ const SinglyLinkedList = (() => {
 
     const prepend = (value) => {
         let newNode = Node(value)
-
-        if(head == null) {
+        
+        if(head == null){
             tail = newNode
             head = newNode
             return
@@ -26,63 +26,58 @@ const SinglyLinkedList = (() => {
     const append = (value) => {
         let newNode = Node(value)
 
-        if(!head) {
+        if(tail == null) {
             head = newNode
             tail = newNode
-        } else {
-            tail.nextNode = newNode
-            tail = newNode
+            return 
         }
+        tail.nextNode = newNode
+        tail = newNode
         size++
     }
 
     const insertAtMid = (value) => {
-        if(head == null) {
-            return Node(value)
-        } else {
-            let newNode = Node(value)
-            let current = head
-            let len = 0
+        let newNode = Node(value)
+        let current = head
+        let len = 0
 
-            while (current !== null) {
-                current = current.nextNode
-            }
-
-            let mid = (len % 2 === 0) ? len / 2 : (len + 1) / 2
-            current = head
-
-            while(mid-- > 1) {
-                current = current.nextNode
-            }
-            newNode.nextNode = current.nextNode
-            current.nextNode = newNode
-            return head
+        while(current !== null) {
+            len++
+            current = current.nextNode
         }
+        
+        let mid = (len % 2 === 0) ? len / 2 : (len + 1) / 2
+        current = head
 
+        while(mid-- > 1) {
+            current = current.nextNode
+        }
+        newNode.nextNode = current.nextNode
+        current.nextNode = newNode
+        return head
     }
 
     const traverse = () => {
         let res = []
         let current = head
-
+        
         while(current.nextNode) {
             res.push(current.value)
             current = current.nextNode
         }
         res.push(current.value)
         return res.join(', ')
-
     }
 
     return {
         prepend,
         append,
-        insertAtMid,
-        traverse
+        traverse,
+        insertAtMid
     }
 
-})()
 
+})()
 
 SinglyLinkedList.append(34)
 SinglyLinkedList.append(9)
