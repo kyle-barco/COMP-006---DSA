@@ -23,7 +23,7 @@ class Queue {
     }
   }
 
-  enqueue(value){
+  enqueue(value){ 
     if (this.isFull()){
       console.log(`Full Queue`)
     }

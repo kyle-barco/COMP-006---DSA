@@ -1,7 +1,7 @@
 class Queue {
   constructor() {
     this.cap = 4;
-    this.limit = this.cap;
+    this.limit = this.cap;           
     this.array = new Array(this.cap);
     this.front = -1;
     this.rear = -1;
@@ -16,7 +16,7 @@ class Queue {
   }
 
   isFull() {
-    if (this.rear == this.limit - 1) {
+    if ((this.rear + 1) % this.cap == this.front) {
       return true;
     } else {
       return false;
@@ -31,7 +31,7 @@ class Queue {
       this.rear = 0;
       this.array[this.rear] = value;
     } else {
-      this.rear += 1;
+      this.rear = (this.rear + 1) % this.cap;
       this.array[this.rear] = value;
     }
   }
@@ -42,15 +42,16 @@ class Queue {
       return;
     }
     this.array[this.front] = "None";
-    this.front += 1;
+    
+    this.front = (this.front + 1) % this.cap;
 
-    if (this.front > this.rear) {
+    if (this.front == (this.rear + 1) % this.cap) {   
       this.front = -1;
       this.rear = -1;
     }
   }
 
-  peak() {
+  peak() {   
     return this.array[this.front];
   }
 }
@@ -61,6 +62,9 @@ myQueue.enqueue(2);
 myQueue.enqueue(3);
 myQueue.enqueue(4);
 myQueue.dequeue();
+myQueue.dequeue();
+myQueue.enqueue(5);
+
 console.log(`Array: ${myQueue.array}`);
 console.log(`isEmpty: ${myQueue.isEmpty()}`);
 console.log(`isFull: ${myQueue.isFull()}`);
